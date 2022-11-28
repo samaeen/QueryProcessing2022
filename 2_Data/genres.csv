@@ -1,0 +1,397 @@
+genre_id,movie_genres
+0,Life
+1,  Drama
+2,  Family 
+3,Friendship
+4,  Romance
+5,  Life
+6,  Medical 
+7,Thriller
+4,  Romance
+8,  Crime
+9,  Melodrama 
+3,Friendship
+4,  Romance
+5,  Life
+6,  Medical 
+10,Psychological
+5,  Life
+1,  Drama
+2,  Family 
+11,Comedy
+8,  Crime
+5,  Life
+12,  Drama 
+11,Comedy
+4,  Romance
+13,  Youth
+2,  Family 
+10,Psychological
+14,  Comedy
+4,  Romance
+12,  Drama 
+15,Historical
+16,  Mystery
+14,  Comedy
+17,  Romance 
+7,Thriller
+16,  Mystery
+18,  Psychological
+9,  Melodrama 
+7,Thriller
+16,  Mystery
+19,  Sci-Fi 
+3,Friendship
+5,  Life
+1,  Drama
+2,  Family 
+20,Action
+21,  Thriller
+1,  Drama
+22,  Fantasy 
+11,Comedy
+23,  Law
+8,  Crime
+12,  Drama 
+24,Military
+14,  Comedy
+4,  Romance
+25,  Political 
+26,Mystery
+18,  Psychological
+1,  Drama
+2,  Family 
+7,Thriller
+27,  Historical
+28,  Horror
+29,  Supernatural 
+24,Military
+27,  Historical
+4,  Romance
+9,  Melodrama 
+20,Action
+21,  Thriller
+16,  Mystery
+17,  Romance 
+7,Thriller
+16,  Mystery
+23,  Law
+12,  Drama 
+11,Comedy
+4,  Romance
+30,  Fantasy
+9,  Melodrama 
+11,Comedy
+4,  Romance
+31,  Life 
+20,Action
+16,  Mystery
+1,  Drama
+29,  Supernatural 
+20,Action
+32,  Military
+14,  Comedy
+12,  Drama 
+7,Thriller
+27,  Historical
+28,  Horror
+25,  Political 
+7,Thriller
+16,  Mystery
+1,  Drama
+2,  Family 
+11,Comedy
+4,  Romance
+13,  Youth
+33,  Sports 
+26,Mystery
+23,  Law
+8,  Crime
+12,  Drama 
+20,Action
+16,  Mystery
+14,  Comedy
+29,  Supernatural 
+7,Thriller
+16,  Mystery
+1,  Drama
+2,  Family 
+7,Thriller
+16,  Mystery
+18,  Psychological
+12,  Drama 
+20,Action
+21,  Thriller
+16,  Mystery
+12,  Drama 
+20,Action
+27,  Historical
+1,  Drama
+25,  Political 
+7,Thriller
+16,  Mystery
+28,  Horror
+29,  Supernatural 
+3,Friendship
+14,  Comedy
+13,  Youth
+33,  Sports 
+15,Historical
+4,  Romance
+1,  Drama
+9,  Melodrama 
+7,Thriller
+16,  Mystery
+19,  Sci-Fi 
+34,Horror
+1,  Drama
+35,  Sci-Fi
+29,  Supernatural 
+36,Romance
+5,  Life
+1,  Drama
+22,  Fantasy 
+11,Comedy
+4,  Romance
+37,  Supernatural
+25,  Political 
+7,Thriller
+16,  Mystery
+23,  Law
+12,  Drama 
+26,Mystery
+4,  Romance
+1,  Drama
+22,  Fantasy 
+0,Life
+1,  Drama
+38,  Family
+9,  Melodrama 
+36,Romance
+1,  Drama
+39,  Medical
+9,  Melodrama 
+10,Psychological
+14,  Comedy
+4,  Romance
+12,  Drama 
+15,Historical
+4,  Romance
+30,  Fantasy
+25,  Political 
+3,Friendship
+40,  Business
+5,  Life
+12,  Drama 
+15,Historical
+4,  Romance
+30,  Fantasy
+25,  Political 
+20,Action
+21,  Thriller
+41,  Crime 
+34,Horror
+14,  Comedy
+4,  Romance
+22,  Fantasy 
+36,Romance
+1,  Drama
+6,  Medical 
+20,Action
+16,  Mystery
+14,  Comedy
+41,  Crime 
+15,Historical
+4,  Romance
+9,  Melodrama 
+20,Action
+14,  Comedy
+4,  Romance
+9,  Melodrama 
+42,Drama
+43,  Sports
+9,  Melodrama 
+20,Action
+21,  Thriller
+14,  Comedy
+4,  Romance
+1,  Drama
+29,  Supernatural 
+26,Mystery
+23,  Law
+8,  Crime
+12,  Drama 
+3,Friendship
+14,  Comedy
+4,  Romance
+41,  Crime 
+7,Thriller
+16,  Mystery
+35,  Sci-Fi
+22,  Fantasy 
+7,Thriller
+28,  Horror
+18,  Psychological
+12,  Drama 
+10,Psychological
+14,  Comedy
+4,  Romance
+12,  Drama 
+11,Comedy
+5,  Life
+13,  Youth
+12,  Drama 
+20,Action
+27,  Historical
+4,  Romance
+25,  Political 
+26,Mystery
+23,  Law
+1,  Drama
+6,  Medical 
+44,Food
+27,  Historical
+4,  Romance
+6,  Medical 
+11,Comedy
+4,  Romance
+1,  Drama
+2,  Family 
+7,Thriller
+16,  Mystery
+18,  Psychological
+8,  Crime
+12,  Drama 
+11,Comedy
+4,  Romance
+5,  Life
+45,  School
+1,  Drama
+38,  Family
+29,  Supernatural 
+46,Business
+14,  Comedy
+8,  Crime
+12,  Drama 
+7,Thriller
+16,  Mystery
+23,  Law
+12,  Drama 
+11,Comedy
+4,  Romance
+1,  Drama
+29,  Supernatural 
+15,Historical
+4,  Romance
+47,  Melodrama
+25,  Political 
+3,Friendship
+4,  Romance
+5,  Life
+48,  Youth 
+26,Mystery
+14,  Comedy
+38,  Family
+22,  Fantasy 
+20,Action
+21,  Thriller
+4,  Romance
+41,  Crime 
+7,Thriller
+16,  Mystery
+1,  Drama
+22,  Fantasy 
+7,Thriller
+16,  Mystery
+1,  Drama
+25,  Political 
+10,Psychological
+4,  Romance
+9,  Melodrama 
+20,Action
+21,  Thriller
+16,  Mystery
+12,  Drama 
+3,Friendship
+14,  Comedy
+5,  Life
+12,  Drama 
+34,Horror
+14,  Comedy
+4,  Romance
+29,  Supernatural 
+11,Comedy
+4,  Romance
+1,  Drama
+2,  Family 
+20,Action
+21,  Thriller
+16,  Mystery
+12,  Drama 
+20,Action
+21,  Thriller
+18,  Psychological
+41,  Crime 
+7,Thriller
+16,  Mystery
+29,  Supernatural 
+20,Action
+21,  Thriller
+27,  Historical
+17,  Romance 
+7,Thriller
+16,  Mystery
+1,  Drama
+9,  Melodrama 
+26,Mystery
+23,  Law
+4,  Romance
+29,  Supernatural 
+11,Comedy
+4,  Romance
+5,  Life
+2,  Family 
+20,Action
+21,  Thriller
+1,  Drama
+19,  Sci-Fi 
+11,Comedy
+4,  Romance
+12,  Drama 
+10,Psychological
+14,  Comedy
+4,  Romance
+12,  Drama 
+15,Historical
+4,  Romance
+30,  Fantasy
+25,  Political 
+0,Life
+45,  School
+38,  Family
+9,  Melodrama 
+3,Friendship
+40,  Business
+14,  Comedy
+17,  Romance 
+20,Action
+21,  Thriller
+16,  Mystery
+41,  Crime 
+26,Mystery
+4,  Romance
+5,  Life
+6,  Medical 
+7,Thriller
+14,  Comedy
+4,  Romance
+1,  Drama
+2,  Family 
+11,Comedy
+4,  Romance
+5,  Life
+12,  Drama 
+46,Business
+14,  Comedy
+4,  Romance
+33,  Sports 
