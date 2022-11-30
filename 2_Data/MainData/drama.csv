@@ -1,4 +1,4 @@
-mov_id,movie_title,movie_year,dra_time,Cast,Genre
+dra_id,dra_title,dra_year,dra_time,Cast,Genre
 1,Move to Heaven,2021,52 min.,"Lee Je Hoon, Tang Jun Sang, Hong Seung Hee, Jung Suk Yong, Jung Young Joo, Lee Moon Shik","Life,  Drama,  Family "
 2,Hospital Playlist,2020,1 hr. 30 min.,"Jo Jung Suk, Yoo Yeon Seok, Jung Kyung Ho, Kim Dae Myung, Jeon Mi Do, Shin Hyun Bin","Friendship,  Romance,  Life,  Medical "
 3,Flower of Evil,2020,1 hr. 10 min.,"Lee Joon Gi, Moon Chae Won, Jang Hee Jin, Seo Hyun Woo, Nam Ki Ae, Son Jong Hak","Thriller,  Romance,  Crime,  Melodrama "
