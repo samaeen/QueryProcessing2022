@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Apache Calcite Demo</title>
+  <!--<style>
+      textarea {
+          width: 100%;
+      }
+  </style>
+  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+  <div class="row">
+    <!--
+        <div class="col-md-4" >
+            <div class="classWithPad" style="margin-top:50px; padding-top:50px;">
+                <table class="table">
+                    <tr><th scope="col"><a href="http://localhost:8080/query" name="query1" id="query1">Normal Query</a></th></tr>
+                    <tr><th scope="col"><a href="http://localhost:8080/daa" name="daa" id="daa">Search Drama Acted by an Actor</a></th></tr>
+                    <tr><th scope="col"><a href="http://localhost:8080/dsp" name="dsp" id="dsp">Search Drama of a Specific Time Period</a></th></tr>
+                    <tr><th scope="col"><a href="http://localhost:8080/rad" name="rad" id="rad">Search Reviews of a Drama</a></th></tr>
+                </table>
+            </div>
+
+        </div>
+        -->
+    <div class="col-md-12">
+      <form>
+        <fieldset>
+          <legend>Request <input type="submit" value="Submit"></legend>
+          <textarea class="form-control" name="query" id="query" cols="30" rows="10" required>select * from drama limit 20</textarea>
+        </fieldset>
+        <fieldset>
+          <legend>Response</legend>
+          <table class="table" id="results" cellspacing="0" cellpadding="2" border="1">
+            <tr>
+              <td>run query</td>
+            </tr>
+          </table>
+        </fieldset>
+      </form>
+    </div>
+
+  </div>
+
+
+</div>
+<script>
+        const textarea = document.querySelector('textarea')
+
+        const query = async (body) => {
+            const url = 'http://localhost:8080/query'
+            const method = 'POST'
+            const response = await fetch(url, {method, body})
+            const json = await response.json()
+            console.log(json)
+            return json
+        }
+        const daa = async (body) => {
+            const url = 'http://localhost:8080/daa'
+            const method = 'POST'
+            const response = await fetch(url, {method, body})
+            const json = await response.json()
+            console.log(json)
+            return json
+        }
+
+        const render = rows => {
+            const results = document.getElementById('results')
+            if (!rows || !Array.isArray(rows)) {
+                results.innerHTML = `<tr><td>${rows.message}</td></tr>`
+            }
+
+            const header = '<tr>' + Object.keys(rows[0]).map(key => `<th>${key}</th>`).join('') + '</tr>'
+            const cells = rows.map(row => '<tr>' + Object.keys(row).map(key => `<td>${row[key]}</td>`).join('') + '</tr>').join('')
+            results.innerHTML = header + cells
+        }
+
+        textarea.addEventListener('keyup', async event => {
+            if (event.code === 'Enter' && event.ctrlKey) {
+                const rows = await query(textarea.value)
+                render(rows)
+            }
+        })
+
+        document.querySelector('form').addEventListener('submit', async event => {
+            event && event.preventDefault()
+            const rows = await query(textarea.value)
+            render(rows)
+        })
+    </script>
+</body>
+</html>

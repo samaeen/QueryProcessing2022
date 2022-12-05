@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultSchema": "DEMO",
+  "schemas": [{
+    "name": "DEMO",
+    "type": "custom",
+    "factory": "com.Shoummo.QueryProcessing2022.calcite.CsvSchemaFactory",
+    "operand": {}
+  }]
+}

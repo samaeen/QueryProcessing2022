@@ -8,3 +8,5 @@ After that the cast data was scraped from wikipedia using the "CastingData2.ipyn
 
 After the data was cleaned and turned into our required schema using "DataCleaner.ipynb" in 2_data folder
 
+A simple csv streaming application was implemented using apache calcite adapter in the 2_CSV_adapter Implementation example
+
