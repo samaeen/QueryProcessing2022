@@ -18,14 +18,15 @@
 <div class="container">
 
   <div class="row">
+    <h1>Search Drama of a Specific Time Period Based on Actor</h1>
 
         <div class="col-md-4" >
             <div class="classWithPad" style="margin-top:50px; padding-top:50px;">
                 <table class="table">
                     <tr><th scope="col"><a href="index.html" name="query1" id="query1">Home</a></th></tr>
-                    <tr><th scope="col"><a href="time_period_actor.html" name="daa" id="daa">Search Dramas of a Specific Time Period By Actor</a></th></tr>
-                    <tr><th scope="col"><a href="actor.html" name="dsp" id="dsp">Search Dramas of an Actor</a></th></tr>
-                    <tr><th scope="col"><a href="genre.html" name="rad" id="rad">Search Dramas of a Genre</a></th></tr>
+                    <tr><th scope="col"><a href="time_period_actor.html" name="daa" id="daa">Search Drama of a Specific Time Period By Actor</a></th></tr>
+                    <tr><th scope="col"><a href="actor.html" name="dsp" id="dsp">Search Drama of a Specific Time Period</a></th></tr>
+                    <tr><th scope="col"><a href="http://localhost:8080/rad" name="rad" id="rad">Search Reviews of a Drama</a></th></tr>
                 </table>
             </div>
 
@@ -35,10 +36,10 @@
       <form>
         <fieldset>
           <legend> <input type="submit" value="Submit"></legend>
-          <textarea class="form-control" name="query" id="query" cols="30" rows="10" required>SELECT drama_url FROM drama WHERE dra_id IN ( SELECT dra_id FROM ( SELECT gen_id FROM review INNER JOIN drama_genres USING (dra_id) WHERE review.user_id = 7 GROUP BY gen_id ORDER BY COUNT(drama_genres.dra_id) DESC LIMIT 3) as FirstSet INNER JOIN ( SELECT gen_id, dra_id FROM drama_cast JOIN drama_genres USING(dra_id) WHERE drama_cast.act_id IN ( SELECT act_id FROM actor WHERE ACT_NAME LIKE '%Hoon%' ) )as SecondSet ON FirstSet.gen_id = SecondSet.gen_id )</textarea>
+          <textarea class="form-control" name="query" id="query" cols="30" rows="10" style="display:none" required>"SELECT drama_url FROM (SELECT drama_url, dra_year FROM drama WHERE dra_id IN ( SELECT FirstSet.dra_id FROM ( SELECT dra_id FROM review WHERE review.user_id = 7) AS FirstSet INNER JOIN ( SELECT dra_id FROM drama_cast WHERE role = 'LEAD') AS SecondSet ON FirstSet.dra_id= SecondSet.dra_id ) LIMIT 3 ) WHERE dra_year = 2021"</textarea>
+          <textarea class="form-control" name="query2" id="query2" cols="5" rows="5" required>2020</textarea>
         </fieldset>
         <fieldset>
-            <button type="button" class="btn btn-secondary"><a href="index_plan.html">Show Plan</a></button>
           <legend>Response</legend>
           <table class="table" id="results" cellspacing="0" cellpadding="2" border="1">
             <tr>
@@ -55,6 +56,8 @@
 </div>
 <script>
         const textarea = document.querySelector('textarea')
+        var demoQuery= "SELECT drama_url FROM (SELECT drama_url, dra_year FROM drama WHERE dra_id IN ( SELECT FirstSet.dra_id FROM ( SELECT dra_id FROM review WHERE review.user_id = 7) AS FirstSet INNER JOIN ( SELECT dra_id FROM drama_cast WHERE role = 'LEAD') AS SecondSet ON FirstSet.dra_id= SecondSet.dra_id ) LIMIT 3 ) WHERE dra_year = "+document.getElementById('query2').value
+        textarea.value= demoQuery
 
         const query = async (body) => {
             const url = 'http://localhost:8080/query'
@@ -86,6 +89,8 @@
 
         textarea.addEventListener('keyup', async event => {
             if (event.code === 'Enter' && event.ctrlKey) {
+                var demoQuery= "SELECT drama_url FROM (SELECT drama_url, dra_year FROM drama WHERE dra_id IN ( SELECT FirstSet.dra_id FROM ( SELECT dra_id FROM review WHERE review.user_id = 7) AS FirstSet INNER JOIN ( SELECT dra_id FROM drama_cast WHERE role = 'LEAD') AS SecondSet ON FirstSet.dra_id= SecondSet.dra_id ) LIMIT 3 ) WHERE dra_year = "+document.getElementById('query2').value
+                textarea.value= demoQuery
                 const rows = await query(textarea.value)
                 render(rows)
             }
@@ -93,6 +98,8 @@
 
         document.querySelector('form').addEventListener('submit', async event => {
             event && event.preventDefault()
+            var demoQuery= "SELECT drama_url FROM (SELECT drama_url, dra_year FROM drama WHERE dra_id IN ( SELECT FirstSet.dra_id FROM ( SELECT dra_id FROM review WHERE review.user_id = 7) AS FirstSet INNER JOIN ( SELECT dra_id FROM drama_cast WHERE role = 'LEAD') AS SecondSet ON FirstSet.dra_id= SecondSet.dra_id ) LIMIT 3 ) WHERE dra_year = "+document.getElementById('query2').value
+            textarea.value= demoQuery
             const rows = await query(textarea.value)
             render(rows)
         })

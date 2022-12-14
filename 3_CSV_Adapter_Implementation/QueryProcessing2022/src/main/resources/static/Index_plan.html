@@ -1,23 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Apache Calcite Demo</title>
-  <!--<style>
-      textarea {
-          width: 100%;
-      }
-  </style>
-  -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Apache Calcite Demo</title>
+    <!--<style>
+        textarea {
+            width: 100%;
+        }
+    </style>
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
 
-  <div class="row">
+    <div class="row">
 
         <div class="col-md-4" >
             <div class="classWithPad" style="margin-top:50px; padding-top:50px;">
@@ -31,25 +31,24 @@
 
         </div>
 
-    <div class="col-md-8">
-      <form>
-        <fieldset>
-          <legend> <input type="submit" value="Submit"></legend>
-          <textarea class="form-control" name="query" id="query" cols="30" rows="10" required>SELECT drama_url FROM drama WHERE dra_id IN ( SELECT dra_id FROM ( SELECT gen_id FROM review INNER JOIN drama_genres USING (dra_id) WHERE review.user_id = 7 GROUP BY gen_id ORDER BY COUNT(drama_genres.dra_id) DESC LIMIT 3) as FirstSet INNER JOIN ( SELECT gen_id, dra_id FROM drama_cast JOIN drama_genres USING(dra_id) WHERE drama_cast.act_id IN ( SELECT act_id FROM actor WHERE ACT_NAME LIKE '%Hoon%' ) )as SecondSet ON FirstSet.gen_id = SecondSet.gen_id )</textarea>
-        </fieldset>
-        <fieldset>
-            <button type="button" class="btn btn-secondary"><a href="index_plan.html">Show Plan</a></button>
-          <legend>Response</legend>
-          <table class="table" id="results" cellspacing="0" cellpadding="2" border="1">
-            <tr>
-              <td>run query</td>
-            </tr>
-          </table>
-        </fieldset>
-      </form>
-    </div>
+        <div class="col-md-8">
+            <form>
+                <fieldset>
+                    <legend> <input type="submit" value="Submit"></legend>
+                    <textarea class="form-control" name="query" id="query" cols="30" rows="10" required>explain plan for SELECT drama_url FROM drama WHERE dra_id IN ( SELECT dra_id FROM ( SELECT gen_id FROM review INNER JOIN drama_genres USING (dra_id) WHERE review.user_id = 7 GROUP BY gen_id ORDER BY COUNT(drama_genres.dra_id) DESC LIMIT 3) as FirstSet INNER JOIN ( SELECT gen_id, dra_id FROM drama_cast JOIN drama_genres USING(dra_id) WHERE drama_cast.act_id IN ( SELECT act_id FROM actor WHERE ACT_NAME LIKE '%Hoon%' ) )as SecondSet ON FirstSet.gen_id = SecondSet.gen_id )</textarea>
+                </fieldset>
+                <fieldset>
+                    <legend>Response</legend>
+                    <table class="table" id="results" cellspacing="0" cellpadding="2" border="1">
+                        <tr>
+                            <td>run query</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </form>
+        </div>
 
-  </div>
+    </div>
 
 
 </div>
@@ -80,7 +79,7 @@
             }
 
             const header = '<tr>' + Object.keys(rows[0]).map(key => `<th>${key}</th>`).join('') + '</tr>'
-            const cells = rows.map(row => '<tr>' + Object.keys(row).map(key => `<td><div class="card" style="width: 18rem;"><img class="card-img-top" src=${row[key]} alt="Card image cap"></div></td>`).join('') + '</tr>').join('')
+            const cells = rows.map(row => '<tr>' + Object.keys(row).map(key => `<td>${row[key]}</td>`).join('') + '</tr>').join('')
             results.innerHTML = header + cells
         }
 
