@@ -24,6 +24,7 @@
             <div class="classWithPad" style="margin-top:50px; padding-top:50px;">
                 <table class="table">
                     <tr><th scope="col"><a href="index.html" name="query1" id="query1">Home</a></th></tr>
+                    <tr><th scope="col"><a href="drama.html" name="daa" id="daa">Search Dramas reviews</a></th></tr>
                     <tr><th scope="col"><a href="time_period_actor.html" name="daa" id="daa">Search Dramas of a Specific Time Period By Actor</a></th></tr>
                     <tr><th scope="col"><a href="actor.html" name="dsp" id="dsp">Search Dramas of an Actor</a></th></tr>
                     <tr><th scope="col"><a href="genre.html" name="rad" id="rad">Search Dramas of a Genre</a></th></tr>
@@ -36,8 +37,8 @@
       <form>
         <fieldset>
           <legend> <input type="submit" value="Submit"></legend>
-          <textarea class="form-control" name="query" id="query" cols="30" rows="10" required>SELECT drama_url FROM drama WHERE dra_id IN ( SELECT dra_id FROM ( SELECT gen_id FROM review INNER JOIN drama_genres USING (dra_id) WHERE review.user_id = 7 GROUP BY gen_id ORDER BY COUNT(drama_genres.dra_id) DESC LIMIT 3) as FirstSet INNER JOIN ( SELECT gen_id, dra_id FROM drama_cast JOIN drama_genres USING(dra_id) WHERE drama_cast.act_id IN ( SELECT act_id FROM actor WHERE ACT_NAME LIKE '%Hoon%' ) )as SecondSet ON FirstSet.gen_id = SecondSet.gen_id )</textarea>
-          <textarea class="form-control" name="query2" id="query2" cols="5" rows="5" required>'%HOON%'</textarea>
+            <strong>Query</strong><textarea class="form-control" name="query" id="query" cols="30" rows="5" required>SELECT drama_url FROM drama WHERE dra_id IN ( SELECT dra_id FROM ( SELECT gen_id FROM review INNER JOIN drama_genres USING (dra_id) WHERE review.user_id = 7 GROUP BY gen_id ORDER BY COUNT(drama_genres.dra_id) DESC LIMIT 3) as FirstSet INNER JOIN ( SELECT gen_id, dra_id FROM drama_cast JOIN drama_genres USING(dra_id) WHERE drama_cast.act_id IN ( SELECT act_id FROM actor WHERE ACT_NAME LIKE '%Hoon%' ) )as SecondSet ON FirstSet.gen_id = SecondSet.gen_id )</textarea>
+            <strong>Actor Name</strong> <textarea class="form-control" name="query2" id="query2" cols="1" rows="1" required>'%HOON%'</textarea>
         </fieldset>
         <fieldset>
           <legend>Response</legend>

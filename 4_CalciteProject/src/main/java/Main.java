@@ -62,6 +62,70 @@ public class Main {
         }
     }
 
+    private static final List<Object[]> drama_cast;
+
+    static {
+        try {
+            drama_cast = (CSVReader3.reader());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private static final List<Object[]> drama_watched;
+
+    static {
+        try {
+            drama_watched = (CSVReader4.reader());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    //genres
+    private static final List<Object[]> genres;
+
+    static {
+        try {
+            genres = (CSVReader5.reader());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final List<Object[]> review;
+
+    static {
+        try {
+            review = (CSVReader6.reader());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //user
+    private static final List<Object[]> user;
+
+    static {
+        try {
+            user = (CSVReader7.reader());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //actor
+    private static final List<Object[]> actor;
+
+    static {
+        try {
+            actor = (CSVReader7.reader());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     public static void main(String[] args) throws Exception {
         //new EndToEndExampleBindable().example();
         //new QueryStream().run();
@@ -78,7 +142,7 @@ public class Main {
         RelDataTypeFactory typeFactory = new JavaTypeFactoryImpl();
         // Create the root schema describing the data model
         CalciteSchema schema = CalciteSchema.createRootSchema(true);
-        // Define type for authors table
+        // Define type for drama_genres table
         RelDataTypeFactory.Builder drama_genreType = new RelDataTypeFactory.Builder(typeFactory);
         drama_genreType.add("dra_id", SqlTypeName.INTEGER);
         drama_genreType.add("gen_id", SqlTypeName.INTEGER);
@@ -88,20 +152,93 @@ public class Main {
         Main.ListTable drama_genreTable = new ListTable(drama_genreType.build(), (List<Object[]>) drama_genres);
         // Add authors table to the schema
         schema.add("drama_genres", drama_genreTable);
-        // Define type for books table
+        // Define type for drama table
         RelDataTypeFactory.Builder dramaType = new RelDataTypeFactory.Builder(typeFactory);
         dramaType.add("dra_id", SqlTypeName.INTEGER);
         dramaType.add("dra_title", SqlTypeName.VARCHAR);
         dramaType.add("dra_year", SqlTypeName.INTEGER);
         dramaType.add("dra_time", SqlTypeName.VARCHAR);
-        // Initialize books table with data
-        ListTable booksTable = new ListTable(dramaType.build(), (List<Object[]>) drama);
+        // Initialize drama table with data
+        ListTable dramaTable = new ListTable(dramaType.build(), (List<Object[]>) drama);
         // Add books table to the schema
-        schema.add("drama", booksTable);
+        schema.add("drama", dramaTable);
+
+        // Define type drama_cast
+        RelDataTypeFactory.Builder drama_CastType = new RelDataTypeFactory.Builder(typeFactory);
+        drama_CastType.add("dra_id", SqlTypeName.INTEGER);
+        drama_CastType.add("act_id", SqlTypeName.INTEGER);
+
+        // Initialize books table with data
+        ListTable drama_castTable = new ListTable(drama_CastType.build(), (List<Object[]>) drama_cast);
+        // Add drama_cast table to the schema
+        schema.add("drama_cast",drama_castTable);
+
+
+
+        // Define type drama_watch
+        RelDataTypeFactory.Builder drama_watchType = new RelDataTypeFactory.Builder(typeFactory);
+        drama_watchType.add("user_id", SqlTypeName.INTEGER);
+        drama_watchType.add("dra_id", SqlTypeName.INTEGER);
+
+        // Initialize drama_watch table with data
+        ListTable drama_watchedTable = new ListTable(drama_watchType.build(), (List<Object[]>) drama_watched);
+        // Add drama_cast table to the schema
+        schema.add("drama_watched",drama_watchedTable );
+
+
+
+        // Define type genres
+        RelDataTypeFactory.Builder genresType = new RelDataTypeFactory.Builder(typeFactory);
+        genresType.add("gen_id", SqlTypeName.INTEGER);
+        genresType.add("gen_title", SqlTypeName.VARCHAR);
+
+        // Initialize genres table with data
+        ListTable genresTable = new ListTable(genresType.build(), (List<Object[]>) genres);
+        // Add drama_cast table to the schema
+        schema.add("genres",genresTable );
+
+
+        // Define type review
+        RelDataTypeFactory.Builder reviewType = new RelDataTypeFactory.Builder(typeFactory);
+        reviewType.add("user_id", SqlTypeName.INTEGER);
+        reviewType.add("dra_id", SqlTypeName.INTEGER);
+        reviewType.add("review", SqlTypeName.VARCHAR);
+
+        // Initialize review table with data
+        ListTable reviewTable = new ListTable(reviewType.build(), (List<Object[]>) review);
+        // Add review table to the schema
+        schema.add("review",reviewTable );
+
+        // Define type user
+        RelDataTypeFactory.Builder userType = new RelDataTypeFactory.Builder(typeFactory);
+        userType.add("user_id", SqlTypeName.INTEGER);
+        userType.add("name", SqlTypeName.VARCHAR);
+
+        // Initialize user table with data
+        ListTable userTable = new ListTable(userType.build(), (List<Object[]>) user);
+        // Add review table to the schema
+        schema.add("user",userTable );
+
+        // Define type actor
+        //act_id,Act_Name,Date_Birth,BPlace,Img,WikiLink
+        RelDataTypeFactory.Builder actorType = new RelDataTypeFactory.Builder(typeFactory);
+        actorType.add("act_id", SqlTypeName.INTEGER);
+        actorType.add("Act_Name", SqlTypeName.VARCHAR);
+        actorType.add("Date_Birth", SqlTypeName.DATE);
+        actorType.add("BPlace", SqlTypeName.VARCHAR);
+        actorType.add("Img", SqlTypeName.VARCHAR);
+        actorType.add("WikiLink", SqlTypeName.VARCHAR);
+
+        // Initialize user table with data
+        ListTable actorTable = new ListTable(actorType.build(), (List<Object[]>) actor);
+        // Add review table to the schema
+        schema.add("actor",actorTable );
+
+
 
         // Create an SQL parser
         SqlParser parser = SqlParser.create(
-                "SELECT dra_title FROM drama limit 5");
+                "SELECT act_id FROM actor limit 5");
         // Parse the query into an AST
         SqlNode sqlNode = parser.parseQuery();
 
@@ -164,8 +301,8 @@ public class Main {
 
         // Run the executable plan using a context simply providing access to the schema
         for (Object[] row : phyPlan.bind(new SchemaOnlyDataContext(schema))) {
-            System.out.println(Arrays.toString(row));
-            //System.out.println(row);
+            //System.out.println(Arrays.toString(row));
+            System.out.println(row);
 
         }
     }

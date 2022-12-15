@@ -24,9 +24,10 @@
             <div class="classWithPad" style="margin-top:50px; padding-top:50px;">
                 <table class="table">
                     <tr><th scope="col"><a href="index.html" name="query1" id="query1">Home</a></th></tr>
-                    <tr><th scope="col"><a href="time_period_actor.html" >Search Dramas of a Specific Time Period By Actor</a></th></tr>
-                    <tr><th scope="col"><a href="actor.html" >Search Dramas of an Actor</a></th></tr>
-                    <tr><th scope="col"><a href="genre.html" >Search Dramas of a Genre</a></th></tr>
+                    <tr><th scope="col"><a href="drama.html" name="daa" id="daa">Search Dramas reviews</a></th></tr>
+                    <tr><th scope="col"><a href="time_period_actor.html" name="daa" id="daa">Search Dramas of a Specific Time Period By Actor</a></th></tr>
+                    <tr><th scope="col"><a href="actor.html" name="dsp" id="dsp">Search Dramas of an Actor</a></th></tr>
+                    <tr><th scope="col"><a href="genre.html" name="rad" id="rad">Search Dramas of a Genre</a></th></tr>
                 </table>
             </div>
 
@@ -35,7 +36,7 @@
     <div class="col-md-8">
       <form>
         <fieldset>
-          <legend> <input type="submit" value="Submit"></legend>
+          <legend> <input type="submit" value="Generate"></legend>
           <textarea class="form-control" name="query" id="query" cols="30" rows="10" style="display:none" required>SELECT drama_url FROM drama WHERE dra_id IN ( SELECT dra_id FROM drama_genres WHERE gen_id IN (SELECT gen_id FROM review INNER JOIN drama_genres USING (dra_id) WHERE review.user_id = 7 GROUP BY gen_id ORDER BY COUNT(drama_genres.dra_id) DESC ) ) LIMIT 10</textarea>
         </fieldset>
         <fieldset>
@@ -80,7 +81,7 @@
                 results.innerHTML = `<tr><td>${rows.message}</td></tr>`
             }
 
-            const header = '<tr>' + Object.keys(rows[0]).map(key => `<th>${key}</th>`).join('') + '</tr>'
+            const header = '<tr>' + Object.keys(rows[0]).map(key => `<th></th>`).join('') + '</tr>'
             const cells = rows.map(row => '<tr>' + Object.keys(row).map(key => `<td><div class="card" style="width: 18rem;"><img class="card-img-top" src=${row[key]} alt="Card image cap"></div></td>`).join('') + '</tr>').join('')
             results.innerHTML = header + cells
         }
