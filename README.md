@@ -26,5 +26,5 @@ As for Calcite's part the main code to classes to implement are CsvSchema and Cs
 
 ## File adapter implementation trial and other codes
 
-Even though we did not show this in our main code however we did some other works to turn our code to o
+Even though we did not show this in our main code or demo.However we did some other works to turn our code to implement file adapter and other sort of adapters. Couple of random codes and trials are in the 4th folder
 
